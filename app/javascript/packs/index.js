@@ -31,7 +31,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import './room/index.css';
-import App from './room/App';
+import App from '../room/App';
 
 
 ReactDOM.render(<App />, document.getElementById('root'));
