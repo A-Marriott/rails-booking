@@ -1,0 +1,28 @@
+.user-item {
+  border: 2px solid rgb(143, 199, 199);
+  border-radius: 10px;
+  padding: 0px 10px;
+  margin: 10px 0;
+  /* background-color: rgb(166, 143, 248); */
+  /* color:white; */
+  width: fit-content;
+  display: flex;
+  align-items: center;
+}
+
+.user-item p {
+  margin: 8px;
+}
+
+.user-item input {
+  width: 30px;
+}
+
+.user-item.chosen-extra {
+  background-color: white;
+}
+
+.extras-item-select {
+  width: fit-content;
+  margin: 5px 0;
+}

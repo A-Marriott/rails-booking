@@ -1,0 +1,43 @@
+.new-user__control {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.new-user__control label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.new-user__control input, select {
+  height: 30px;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.new-user__control select {
+  box-sizing: content-box;
+  /* border-width: 2px;
+  border-style: inset !important; */
+  padding: 2px 2px;
+  border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+}
+
+
+.new-user__control input:focus {
+  outline: 2px solid rgb(166, 143, 248);
+  outline-offset: 0;
+}
+
+.flex-control {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+textarea {
+  height: 80px;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+}
+

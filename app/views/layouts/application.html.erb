@@ -10,6 +10,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+
   </head>
 
   <body>
@@ -17,5 +18,7 @@
     <%= render 'shared/flashes' %>
 
     <%= yield %>
+    
+    <%= javascript_pack_tag 'index' %>
   </body>
 </html>
