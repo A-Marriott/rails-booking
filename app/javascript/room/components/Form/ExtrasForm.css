@@ -1,0 +1,28 @@
+.extras-form {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.extras-controls {
+  display: flex;
+  grid-gap: 10px;
+}
+
+#max-quantity {
+  width: 80px;
+}
+
+.extras-all {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.left-extras-all {
+  display: flex;
+  flex-direction: column;
+}
+
