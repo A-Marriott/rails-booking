@@ -1,0 +1,10 @@
+.initial-extra-control {
+  display: flex;
+  align-items: center;
+}
+
+.initial-extras {
+  background-color: rgb(215, 242, 243);
+  border-radius: 20px;
+  padding: 10px 20px;
+}

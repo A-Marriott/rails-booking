@@ -1,0 +1,13 @@
+.price-input {
+  width: 100px;
+}
+
+.price-label {
+  max-width: 130px;
+  min-width: 130px;
+}
+
+.base-prices {
+  width: 500px;
+}
+
