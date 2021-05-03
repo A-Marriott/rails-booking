@@ -46,7 +46,7 @@ const App = () => {
     <div className="app mt-2">
       <RoomForm onUserData={updateUserData} onExtra={updateExtras} extras={extras} initialExtras={INITIAL_EXTRAS} onBasePrices={updateBasePrices} />
       {room && <RoomShow room={room} extras={extras} basePrices={basePrices} />}
-      <Button onClick={getRooms}>GET ROOMS 2</Button>
+      <Button onClick={getRooms}>GET ROOMS</Button>
     </div>
   );
 }
