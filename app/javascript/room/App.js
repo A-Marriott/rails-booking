@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import RoomForm from "./components/Form/RoomForm";
 import RoomShow from "./components/RoomShow/RoomShow";
 
+import Button from "./components/UI/Button";
+
 
 const App = () => {
 
@@ -31,10 +33,20 @@ const App = () => {
     setBasePrices({monday: inputPrices.monday, tuesday: inputPrices.tuesday, wednesday: inputPrices.wednesday, thursday: inputPrices.thursday, friday: inputPrices.friday, saturday: inputPrices.saturday, sunday: inputPrices.sunday});
   }
 
+  const getRooms = () => {
+    fetch("http://localhost:3000/api/v1/rooms").then(response => {
+      return response.json();
+    }).then(data => {
+      console.log(data);
+    });
+  }
+
+
   return (
     <div className="app mt-2">
       <RoomForm onUserData={updateUserData} onExtra={updateExtras} extras={extras} initialExtras={INITIAL_EXTRAS} onBasePrices={updateBasePrices} />
       {room && <RoomShow room={room} extras={extras} basePrices={basePrices} />}
+      <Button onClick={getRooms}>GET ROOMS 2</Button>
     </div>
   );
 }
