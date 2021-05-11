@@ -95,7 +95,7 @@ const RoomForm = (props) => {
               <textarea id="description" className="form-control" onChange={descriptionChangedHandler} value={inputDescription} />
             </div>
         </Card>
-        <PriceForm onBasePrices={props.onBasePrices}/>
+        {/* <PriceForm onBasePrices={props.onBasePrices}/> */}
         <ExtrasForm  onExtra={props.onExtra} extras={props.extras} initialExtras={props.initialExtras}/>      
           
         <div className="center-button">

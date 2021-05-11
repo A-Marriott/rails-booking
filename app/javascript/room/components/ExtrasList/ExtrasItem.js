@@ -6,7 +6,7 @@ const ExtrasItem = (props) => {
 
   if (props.type === "checkbox") {
     content = (
-      <div class="form-check form-check-inline">
+      <div className="form-check form-check-inline">
         <input className="form-check-input m-0" type="checkbox" />
       </div>)
   }
