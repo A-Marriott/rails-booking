@@ -1,0 +1,19 @@
+<div class="container">
+  <%= link_to new_room_path do %>
+    <button> add new room </button>
+  <% end %>
+  <% @rooms.each do |room| %>
+    <h2><%= link_to room.name , room_path(room) %></h2>
+    <p><%= room.base_price %></p>
+    <p><%= room.headline %></p>
+    <p><%= room.capacity %></p>
+    <p><%= room.description %></p>
+    <%= link_to edit_room_path(room) do %>
+      <button> ⚙️ edit </button>
+    <% end %>
+    <%= link_to room_path(room),  method: :delete, data: { confirm: "are you sure!! 🥳" } do %>
+      <button> 🗑 delete </button>
+    <% end %>
+<!--     <//%= link_to 'Edit', edit_flat_path(@flat) %> -->
+  <% end %>
+</div>

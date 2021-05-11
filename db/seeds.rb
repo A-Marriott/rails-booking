@@ -8,6 +8,7 @@
 
 
 Room.destroy_all
+User.destroy_all
 
 categories = []
 
@@ -22,3 +23,6 @@ categories = []
               )
       room.save!
 end
+
+  User.create!(email: "test@test.com",
+              password: "password")
