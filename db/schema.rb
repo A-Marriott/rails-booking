@@ -10,10 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_29_123324) do
+ActiveRecord::Schema.define(version: 2021_05_11_153409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookings", force: :cascade do |t|
+    t.date "start_date"
+    t.date "end_date"
+    t.string "customer_name"
+    t.string "email"
+    t.string "phone_number"
+    t.integer "number_of_guests"
+    t.integer "total_price"
+    t.integer "price_paid"
+    t.boolean "checked_in"
+    t.boolean "cancelled"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "room_bookings", force: :cascade do |t|
+    t.bigint "room_id", null: false
+    t.bigint "booking_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["booking_id"], name: "index_room_bookings_on_booking_id"
+    t.index ["room_id"], name: "index_room_bookings_on_room_id"
+  end
 
   create_table "rooms", force: :cascade do |t|
     t.integer "base_price"
@@ -39,4 +63,6 @@ ActiveRecord::Schema.define(version: 2021_04_29_123324) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "room_bookings", "bookings"
+  add_foreign_key "room_bookings", "rooms"
 end
