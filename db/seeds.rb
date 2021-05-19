@@ -12,6 +12,9 @@ User.destroy_all
 
 categories = []
 
+company = Company.new(name: 'big money corp')
+company.save
+
 10.times do
   room = Room.new(name: Faker::Name.name,
               base_price: rand(20..100)*100,
@@ -19,10 +22,12 @@ categories = []
               description: Faker::Lorem.paragraph(sentence_count: 4),
               capacity: rand(1..4),
               published: true,
-              category: categories.sample
+              category: categories.sample,
+              company: company
               )
       room.save!
 end
 
   User.create!(email: "test@test.com",
-              password: "password")
+              password: "password",
+              company: company)
