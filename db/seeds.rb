@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+require 'date'
 
 Room.destroy_all
 User.destroy_all
@@ -14,6 +14,14 @@ categories = []
 
 company = Company.new(name: 'big money corp')
 company.save
+
+3.times do
+  Booking.create(start_date: Date.today,
+                 end_date: Date.today,
+                 customer_name: 'John',
+                 total_price: 15
+                 )
+end
 
 10.times do
   room = Room.new(name: Faker::Name.name,

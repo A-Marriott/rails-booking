@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   end
 
   resources :rooms
+  resources :bookings
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

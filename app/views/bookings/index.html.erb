@@ -1,0 +1,17 @@
+<div class="container">
+  <%= link_to new_booking_path do %>
+    <button> add new booking </button>
+  <% end %>
+  <% @bookings.each do |booking| %>
+    <h2><%= link_to booking.start_date , booking_path(booking) %></h2>
+    <p><%= booking.end_date %></p>
+    <p><%= booking.customer_name %></p>
+    <p><%= booking.total_price %></p>
+    <%= link_to edit_booking_path(booking) do %>
+      <button> ⚙️ edit </button>
+    <% end %>
+    <%= link_to booking_path(booking),  method: :delete, data: { confirm: "are you sure!! 🥳" } do %>
+      <button> 🗑 delete </button>
+    <% end %>
+  <% end %>
+</div>
