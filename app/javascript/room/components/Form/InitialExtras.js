@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from "../UI/Button";
 import ExtrasItem from "../ExtrasList/ExtrasItem";
 import "./InitialExtras.css";
-import "../ExtrasList/ExtrasList.css";
+// import "../ExtrasList/ExtrasList.css";
 
 
 

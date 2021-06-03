@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-// import './App.css';
 import RoomForm from "./components/Form/RoomForm";
 import RoomShow from "./components/RoomShow/RoomShow";
-
+import ExtrasForm from './components/Form/ExtrasForm';
+import PriceForm from './components/Form/PriceForm';
 import Button from "./components/UI/Button";
 
 
@@ -11,6 +11,10 @@ const App = () => {
   const [room, setRoom] = useState();
   const [extras, setExtras] = useState([]);
   const [basePrices, setBasePrices] = useState({});
+
+  const [editRoomInfo, setEditRoomInfo] = useState(true);
+  const [editPriceInfo, setEditPriceInfo] = useState(false);
+  const [editExtrasInfo, setEditExtrasInfo] = useState(false);
 
   const INITIAL_EXTRAS = [
     {name: "Extra towels", type: "quantity", quantity: "10", price: "5", id: Math.random().toString()},
@@ -46,6 +50,7 @@ const App = () => {
     });
   }
 
+
   const postRoom = (room) => {
     fetch("http://localhost:3000/api/v1/rooms", {
       method: "POST",
@@ -60,12 +65,37 @@ const App = () => {
     });
   }
 
+  const editRoomHandler = () => {
+    setEditRoomInfo(true)
+    setEditExtrasInfo(false)
+    setEditPriceInfo(false)
+  }
+  
+  const editPriceHandler = () => {
+    setEditRoomInfo(false)
+    setEditExtrasInfo(false)
+    setEditPriceInfo(true)
+  }
+
+  const editExtrasHandler = () => {
+    setEditRoomInfo(false)
+    setEditExtrasInfo(true)
+    setEditPriceInfo(false)
+  }
 
   return (
     <div className="app mt-2">
-      <RoomForm onUserData={updateUserData} onExtra={updateExtras} extras={extras} initialExtras={INITIAL_EXTRAS} onBasePrices={updateBasePrices} />
-      {room && <RoomShow room={room} extras={extras} basePrices={basePrices} />}
-      <Button onClick={getRooms}>GET ROOMS</Button>
+      {!editRoomInfo && <Button onClick={editRoomHandler}>Add room info</Button>}
+      {!editPriceInfo && <Button onClick={editPriceHandler}>Add price info</Button>}
+      {!editExtrasInfo && <Button onClick={editExtrasHandler}>Add extras info</Button>}
+
+      {editRoomInfo && <RoomForm onUserData={updateUserData}  onBasePrices={updateBasePrices} />}
+      {editExtrasInfo && <ExtrasForm onExtra={updateExtras} extras={extras} initialExtras={INITIAL_EXTRAS}/>}
+      {editPriceInfo && <PriceForm onBasePrices={updateBasePrices}/>}
+
+      <RoomShow room={room} extras={extras} basePrices={basePrices} />
+
+      {/* <Button onClick={getRooms}>GET ROOMS</Button> */}
     </div>
   );
 }

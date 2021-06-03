@@ -107,7 +107,7 @@ const Extras = (props) => {
           <InitialExtras initialExtras={props.initialExtras} onExtra={props.onExtra}/>
         </div>
 
-        { props.extras.length > 0 && extrasContent}    
+        {/* { props.extras.length > 0 && extrasContent}     */}
         </div> 
        
     </Card>

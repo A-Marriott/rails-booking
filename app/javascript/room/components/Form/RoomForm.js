@@ -3,11 +3,6 @@ import './RoomForm.css';
 import Modal from "../UI/Modal";
 import Button from "../UI/Button";
 import Card from '../UI/Card';
-import ExtrasForm from './ExtrasForm';
-import PriceForm from './PriceForm';
-
-
-
 
 
 const RoomForm = (props) => {
@@ -95,11 +90,9 @@ const RoomForm = (props) => {
               <textarea id="description" className="form-control" onChange={descriptionChangedHandler} value={inputDescription} />
             </div>
         </Card>
-        {/* <PriceForm onBasePrices={props.onBasePrices}/> */}
-        <ExtrasForm  onExtra={props.onExtra} extras={props.extras} initialExtras={props.initialExtras}/>      
           
         <div className="center-button">
-          <Button type="submit">Create Room</Button>
+          <Button type="submit">Save room info</Button>
         </div>
       </form>
            

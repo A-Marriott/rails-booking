@@ -1,1 +1,25 @@
 // Specific CSS for your home-page
+
+h3, h1 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+h2, h5 {
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+p {
+  margin: 5px 0 10px 0;
+}
+
+.white-text {
+  color: white;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}

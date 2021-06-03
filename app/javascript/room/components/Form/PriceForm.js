@@ -81,7 +81,7 @@ const PriceForm = (props) => {
           {generatePriceInputs()}
         </div>
 
-        <div>
+        {/* <div>
           <h5>Seasonal prices</h5>
           {generateSeasonalPriceInputs()}
           <div className="form-group">
@@ -92,11 +92,12 @@ const PriceForm = (props) => {
             <label htmlFor="date-to">To</label>
             <input id="date-to" type="date" className="form-control" />
           </div>
-        </div>
+        </div> */}
+
       </div>
 
-      {buttonShow && <Button onClick={pricesAddHandler}>Set seasonal prices</Button>}
-  
+      {/* {buttonShow && <Button onClick={pricesAddHandler}>Set seasonal prices</Button>} */}
+      <Button onClick={pricesAddHandler}>Save base prices</Button>
     </Card>
 
   )

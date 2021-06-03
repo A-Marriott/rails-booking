@@ -2,7 +2,7 @@ import React from 'react';
 import ExtrasItem from "./ExtrasItem";
 
 
-import "./ExtrasList.css";
+// import "./ExtrasList.css";
 
 const ExtrasList = (props) => {
   return (  
