@@ -1,6 +1,8 @@
 <div class="container">
-  <%= link_to new_room_path do %>
-    <button> add new room </button>
+  <% if policy(Room).create? %>
+    <%= link_to new_room_path do %>
+      <button> add new room </button>
+    <% end %>
   <% end %>
   <% @rooms.each do |room| %>
     <h2><%= link_to room.name , room_path(room) %></h2>

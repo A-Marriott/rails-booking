@@ -1,15 +1,17 @@
 class RoomsController < ApplicationController
   def index
-    @room = Room.first
-    @rooms = Room.where(company_id: current_user.company_id)
+    # @rooms = Room.where(company_id: current_user.company_id)
+    @rooms = policy_scope(Room)
   end
 
   def new
     @room = Room.new
+    authorize @room
   end
 
   def create
     @room = Room.new(room_params, company_id: current_user.company_id)
+    authorize @room
     if @room.save
       redirect_to rooms_path
     else
@@ -19,16 +21,15 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
-    # how to stop people from other companies looking at room??
+    authorize @room
   end
 
   def edit
     @room = Room.find(params[:id])
-    # how to stop people from other companies editing room??
+    authorize @room
   end
 
   def update
-    # how to stop people from other companies editing room??
     @room = Room.find(params[:id])
     @room.update(room_params)
     if @room.save
@@ -40,15 +41,14 @@ class RoomsController < ApplicationController
 
   def destroy
     @room = Room.find(params[:id])
+    authorize @room
     @room.destroy
     redirect_to rooms_path
-    # how to stop people from other companies deleting room??
   end
 
   private
 
   def room_params
-    params.require(:room).permit( :name, :headline, :base_price, :capacity, :description )
+    params.require(:room).permit(:name, :headline, :base_price, :capacity, :description)
   end
-
 end
