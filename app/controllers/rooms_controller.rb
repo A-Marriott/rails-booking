@@ -1,6 +1,5 @@
 class RoomsController < ApplicationController
   def index
-    # @rooms = Room.where(company_id: current_user.company_id)
     @rooms = policy_scope(Room)
   end
 
@@ -31,6 +30,7 @@ class RoomsController < ApplicationController
 
   def update
     @room = Room.find(params[:id])
+    authorize @room
     @room.update(room_params)
     if @room.save
       redirect_to room_path
