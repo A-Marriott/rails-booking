@@ -7,8 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'date'
 
+RoomBooking.destroy_all
+Booking.destroy_all
 Room.destroy_all
 User.destroy_all
+Company.destroy_all
 
 categories = []
 
@@ -38,14 +41,6 @@ User.create!(email: 'test2@test.com',
   admin: false
   )
 
-3.times do
-  Booking.create(start_date: Date.today,
-                 end_date: Date.today,
-                 customer_name: 'John',
-                 total_price: 15
-                 )
-end
-
 5.times do
   room = Room.new(
     name: Faker::Name.name,
@@ -73,3 +68,20 @@ end
   )
   room.save!
 end
+
+3.times do
+  booking = Booking.new(
+    start_date: Date.today,
+    end_date: Date.today,
+    customer_name: 'John',
+    total_price: 15
+  )
+  booking.save
+
+  RoomBooking.create(
+    booking: booking,
+    room: Room.first
+  )
+end
+
+

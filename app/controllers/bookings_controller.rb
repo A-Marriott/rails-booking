@@ -1,14 +1,29 @@
 class BookingsController < ApplicationController
   def index
-    @bookings = Booking.all
+    # THIS NEEDS UPDATING! Currently we are not using Pundit for authorization, we're doing it manually here and I'm not sure of the repercussions.
+    policy_scope(Booking)
+    if current_user.admin == true
+      @bookings = Booking.all
+    else
+      @bookings = []
+      Company.find(current_user.company_id).rooms.each do |room|
+        room.bookings.each do |booking|
+          @bookings << booking
+        end
+      end
+      @bookings.uniq!
+    end
   end
 
   def new
     @booking = Booking.new
+    authorize @booking
   end
 
   def create
     @booking = Booking.new(booking_params)
+    # Needs logic implemented in booking_policy to only allow entering of one's own company's rooms when making a booking
+    authorize @booking
     if @booking.save
       redirect_to bookings_path
     else
@@ -18,14 +33,17 @@ class BookingsController < ApplicationController
 
   def show
     @booking = Booking.find(params[:id])
+    authorize @booking
   end
 
   def edit
     @booking = Booking.find(params[:id])
+    authorize @booking
   end
 
   def update
     @booking = Booking.find(params[:id])
+    authorize @booking
     @booking.update(booking_params)
     if @booking.save
       redirect_to booking_path
@@ -36,6 +54,7 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking = Booking.find(params[:id])
+    authorize @booking
     @booking.destroy
     redirect_to bookings_path
   end
