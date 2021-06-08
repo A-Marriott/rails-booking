@@ -75,10 +75,11 @@ const PriceForm = (props) => {
   }
 
   return (
-    <Card>
+    <div>
       <div className="d-flex">
         <div className="base-prices">
-          <h3>Add base prices (£/night)</h3>
+          <h6 className="text-blue-grey">STEP TWO</h6>
+          <h3 className="mb-4">Prices</h3>
           {generatePriceInputs()}
         </div>
 
@@ -98,11 +99,11 @@ const PriceForm = (props) => {
       </div>
 
       {/* {buttonShow && <Button onClick={pricesAddHandler}>Set seasonal prices</Button>} */}
-      <div className="d-flex justify-content-center">
-        <Button className="btn btn-primary" onClick={pricesAddHandler}>Save price info</Button>
+      <div className="d-flex justify-content-between modal-footer">
+        <Button className="btn btn-dark" onClick={props.onBackToBasic}>Back</Button>
+        <Button className="btn btn-primary" onClick={pricesAddHandler}>Save and continue</Button>
       </div>
-    </Card>
-
+    </div>
   )
 }
 

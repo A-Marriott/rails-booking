@@ -53,10 +53,10 @@ const RoomForm = (props) => {
       return;
     }
     props.onUserData(inputName, inputPrice, inputDescription, inputCapacity);
-    setInputName("");
-    setInputAge("");
-    setInputDescription("");
-    setInputCapacity("");
+    // setInputName("");
+    // setInputAge("");
+    // setInputDescription("");
+    // setInputCapacity("");
   }
 
 
@@ -67,10 +67,11 @@ const RoomForm = (props) => {
 
 
   return (
-    <div className="mb-3">
+    <div>
       <form onSubmit={formSubmitHandler}>
-        <Card>
-          <h3 className="text-center">Add basic room information</h3>
+        <div>
+          <h6 className="text-blue-grey">STEP ONE</h6>
+          <h3 className="mb-4">Basic details</h3>
             <div className="form-group">
               <label htmlFor="name">Room name</label>
               <input type="text" id="name" className="form-control" onChange={nameChangedHandler} value={inputName} />
@@ -86,13 +87,13 @@ const RoomForm = (props) => {
               </div>
             </div>
             <div className="form-group">
-              <label htmlFor="description">Description</label>
+              <label htmlFor="description">Room description</label>
               <textarea id="description" className="form-control" onChange={descriptionChangedHandler} value={inputDescription} />
             </div>
-        </Card>
           
-        <div className="d-flex justify-content-center">
-          <Button type="submit" className="btn btn-primary">Save room info</Button>
+          <div className="d-flex justify-content-end modal-footer">
+            <Button type="submit" className="btn btn-primary">Save and continue</Button>
+          </div>
         </div>
       </form>
            

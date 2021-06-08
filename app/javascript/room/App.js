@@ -89,21 +89,38 @@ const App = () => {
     setEditPriceInfo(false)
   }
 
+
+  const backToBasicHandler = () => {
+    setEditRoomInfo(true);
+    setEditPriceInfo(false);
+  }
+
+  const backToPricesHandler = () => {
+    setEditPriceInfo(true);
+    setEditExtrasInfo(false);
+  }
+
+
   return (
-    <div className="app mt-2">
-      <div className="room-menu d-flex justify-content-center">
-        <div className="btn-group" role="group" aria-label="Basic example">
-          <button type="button" className="btn btn-light" onClick={editRoomHandler}>Basic information</button>
-          <button type="button" className="btn btn-light" onClick={editPriceHandler}>Prices</button>
-          <button type="button" className="btn btn-light" onClick={editExtrasHandler}>Extras</button>
+    <div className="app">
+      <div className="room-menu d-flex justify-content-center mb-4">
+        <div className={`room-menu-tab ${editRoomInfo ? "tab-bg": ""}`}>
+          <p>Basic information</p>
+        </div>
+        <div className={`room-menu-tab ${editPriceInfo ? "tab-bg": ""}`}>
+          <p>Prices</p>
+        </div>
+        <div className={`room-menu-tab ${editExtrasInfo ? "tab-bg": ""}`}>
+          <p>Extras</p>
         </div>
       </div>
+      <div className="form-content">
+        {editRoomInfo && <RoomForm onUserData={updateUserData}  onBasePrices={updateBasePrices} />}
+        {editPriceInfo && <PriceForm onBasePrices={updateBasePrices} onBackToBasic={backToBasicHandler}/>}
+        {editExtrasInfo && <ExtrasForm onExtra={updateExtras} extras={extras} initialExtras={INITIAL_EXTRAS} onBackToPrices={backToPricesHandler}/>}
+      </div>
 
-      {editRoomInfo && <RoomForm onUserData={updateUserData}  onBasePrices={updateBasePrices} />}
-      {editExtrasInfo && <ExtrasForm onExtra={updateExtras} extras={extras} initialExtras={INITIAL_EXTRAS}/>}
-      {editPriceInfo && <PriceForm onBasePrices={updateBasePrices}/>}
-
-      <RoomShow room={room} extras={extras} basePrices={basePrices} />
+      {/* <RoomShow room={room} extras={extras} basePrices={basePrices} /> */}
 
       {/* <Button onClick={getRooms}>GET ROOMS</Button> */}
     </div>

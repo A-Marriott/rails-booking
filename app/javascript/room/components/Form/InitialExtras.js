@@ -16,7 +16,7 @@ const InitialExtras = (props) => {
   }
 
   return (
-    <div className="initial-extras">
+    <div className="initial-extras mb-4">
       <h5>Your previously used extras:</h5>
         <div className="extras-list">
           <ul>

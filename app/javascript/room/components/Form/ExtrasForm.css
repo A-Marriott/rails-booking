@@ -11,6 +11,7 @@
   /* margin-bottom: 30px; */
   display: grid;
   grid-template-columns: 2fr 1fr 2fr;
+  gap: 8px;
 }
 
 #max-quantity {
@@ -29,7 +30,7 @@
   flex-direction: column;
 } */
 
-.extras-controls.form-group {
+.extras-controls .form-group {
   margin: 0;
 }
 
