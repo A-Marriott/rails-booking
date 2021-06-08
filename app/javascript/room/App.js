@@ -5,6 +5,8 @@ import ExtrasForm from './components/Form/ExtrasForm';
 import PriceForm from './components/Form/PriceForm';
 import Button from "./components/UI/Button";
 
+import "./App.css";
+
 
 const App = () => {
 
@@ -30,6 +32,8 @@ const App = () => {
     // POST request with new room from the form
     const roomPost = { name: inputName, base_price: inputPrice, description: inputDescription, capacity: inputCapacity};
     postRoom(roomPost);
+    setEditPriceInfo(true);
+    setEditRoomInfo(false);
   };
 
   const updateExtras = (inputExtraName, inputExtraType, inputMaxQuantity, inputExtraPrice) => {
@@ -40,6 +44,8 @@ const App = () => {
 
   const updateBasePrices = (inputPrices) => {
     setBasePrices({monday: inputPrices.monday, tuesday: inputPrices.tuesday, wednesday: inputPrices.wednesday, thursday: inputPrices.thursday, friday: inputPrices.friday, saturday: inputPrices.saturday, sunday: inputPrices.sunday});
+    setEditExtrasInfo(true);
+    setEditPriceInfo(false);
   }
 
   const getRooms = () => {
@@ -85,9 +91,13 @@ const App = () => {
 
   return (
     <div className="app mt-2">
-      {!editRoomInfo && <Button onClick={editRoomHandler}>Add room info</Button>}
-      {!editPriceInfo && <Button onClick={editPriceHandler}>Add price info</Button>}
-      {!editExtrasInfo && <Button onClick={editExtrasHandler}>Add extras info</Button>}
+      <div className="room-menu d-flex justify-content-center">
+        <div className="btn-group" role="group" aria-label="Basic example">
+          <button type="button" className="btn btn-light" onClick={editRoomHandler}>Basic information</button>
+          <button type="button" className="btn btn-light" onClick={editPriceHandler}>Prices</button>
+          <button type="button" className="btn btn-light" onClick={editExtrasHandler}>Extras</button>
+        </div>
+      </div>
 
       {editRoomInfo && <RoomForm onUserData={updateUserData}  onBasePrices={updateBasePrices} />}
       {editExtrasInfo && <ExtrasForm onExtra={updateExtras} extras={extras} initialExtras={INITIAL_EXTRAS}/>}

@@ -29,9 +29,10 @@ const PriceForm = (props) => {
   const generatePriceInputs = () => {
 
     const createDayInput = (day) => {
+      let dayCapitalized =  day[0].toUpperCase() + day.slice(1).toLowerCase();
       return (
       <div className="form-group row" key={day} >
-        <label htmlFor={day} className="col-sm-2 col-form-label price-label">{day}</label>
+        <label htmlFor={day} className="col-sm-2 col-form-label price-label">{dayCapitalized}</label>
         <div className="col-sm-2">
           <input type="number" id={day} onChange={priceUpdateHandler} className="form-control price-input" min="0" disabled={!buttonShow}/>
         </div>
@@ -52,9 +53,10 @@ const PriceForm = (props) => {
   const generateSeasonalPriceInputs = () => {
 
     const createDayInput = (day) => {
+      let dayCapitalized =  day[0].toUpperCase() + day.slice(1).toLowerCase();
       return (
       <div className="form-group row" key={day} >
-        <label htmlFor={day} className="col-sm-2 col-form-label price-label">{day}</label>
+        <label htmlFor={day} className="col-sm-2 col-form-label price-label">{dayCapitalized}</label>
         <div className="col-sm-2">
           <input type="number" id={day} onChange={priceUpdateHandler} className="form-control price-input" min="0"/>
         </div>
@@ -74,10 +76,9 @@ const PriceForm = (props) => {
 
   return (
     <Card>
-      <h3 className="text-center mb-4">Room prices</h3>
       <div className="d-flex">
         <div className="base-prices">
-          <h5>Base prices</h5>
+          <h3>Add base prices (£/night)</h3>
           {generatePriceInputs()}
         </div>
 
@@ -97,7 +98,9 @@ const PriceForm = (props) => {
       </div>
 
       {/* {buttonShow && <Button onClick={pricesAddHandler}>Set seasonal prices</Button>} */}
-      <Button onClick={pricesAddHandler}>Save base prices</Button>
+      <div className="d-flex justify-content-center">
+        <Button className="btn btn-primary" onClick={pricesAddHandler}>Save price info</Button>
+      </div>
     </Card>
 
   )

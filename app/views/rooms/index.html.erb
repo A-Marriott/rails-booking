@@ -1,6 +1,5 @@
 <div class="container">
-<h1> hello </h1>
-  <button type="button" class="" data-toggle="modal" data-target=".bd-example-modal-lg">Create a new room</button>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Create a new room</button>
   <%#= link_to new_room_path do %>
     <%# <button> add new room </button> %>
   <%# end %>
@@ -11,10 +10,10 @@
     <p><%= room.capacity %></p>
     <p><%= room.description %></p>
     <%= link_to edit_room_path(room) do %>
-      <button> ⚙️ edit </button>
+      <button class="btn btn-primary"> ⚙️ edit </button>
     <% end %>
     <%= link_to room_path(room),  method: :delete, data: { confirm: "are you sure!! 🥳" } do %>
-      <button> 🗑 delete </button>
+      <button class="btn btn-dark">  🗑 delete </button>
     <% end %>
 <!--     <//%= link_to 'Edit', edit_flat_path(@flat) %> -->
   <% end %>
@@ -26,9 +25,12 @@
   <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <div class="modal-header">
+          <h5 class="modal-title">Create a new room</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
          <div id="root"></div> 
         <% content_for :after_js do %>
          <%= javascript_pack_tag 'room_react' %>

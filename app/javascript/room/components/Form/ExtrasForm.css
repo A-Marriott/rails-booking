@@ -1,28 +1,35 @@
 .extras-form {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  margin-bottom: 30px;
+  flex-wrap: wrap; */
+  width: 100%;
+  align-items: flex-end;
+
 }
 
 .extras-controls {
-  display: flex;
-  grid-gap: 10px;
+  /* margin-bottom: 30px; */
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
 }
 
 #max-quantity {
   width: 80px;
 }
 
-.extras-all {
+/* .extras-all {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin-top: 20px;
-}
+} */
 
-.left-extras-all {
+/* .left-extras-all {
   display: flex;
   flex-direction: column;
+} */
+
+.extras-controls.form-group {
+  margin: 0;
 }
 

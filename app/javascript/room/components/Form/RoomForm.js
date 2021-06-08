@@ -69,8 +69,8 @@ const RoomForm = (props) => {
   return (
     <div className="mb-3">
       <form onSubmit={formSubmitHandler}>
-        <h2 className="text-center">Create a new room</h2>
         <Card>
+          <h3 className="text-center">Add basic room information</h3>
             <div className="form-group">
               <label htmlFor="name">Room name</label>
               <input type="text" id="name" className="form-control" onChange={nameChangedHandler} value={inputName} />
@@ -91,8 +91,8 @@ const RoomForm = (props) => {
             </div>
         </Card>
           
-        <div className="center-button">
-          <Button type="submit">Save room info</Button>
+        <div className="d-flex justify-content-center">
+          <Button type="submit" className="btn btn-primary">Save room info</Button>
         </div>
       </form>
            

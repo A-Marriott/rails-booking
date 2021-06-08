@@ -63,20 +63,16 @@ const Extras = (props) => {
 
   const extrasContent = (
     <div className="w-25">
-      <h3>Extras for this room</h3>
+      <h5>Extras that will be available for this room</h5>
       <ExtrasList extras={props.extras} />
     </div>
   ) 
 
   return (
     <Card>
-      <h3 className="text-center">Add optional extras</h3>
+      <h3 className="text-center mb-3">Add optional extras</h3>
 
-      <div className="extras-all">
-
-        <div className="left-extras-all">
-          
-          <div className="extras-form">
+          <div className="extras-form d-flex mb-3">
             <div className="extras-controls">
               <div className="form-group">
                 <label htmlFor="extra-name">Name</label>
@@ -100,15 +96,13 @@ const Extras = (props) => {
                 <input type="number" id="max-quantity" min="1" className="form-control" onChange={inputMaxQuantityChangedHandler} />
               </div>)}            
             </div>
-
-          <Button onClick={onNewExtraHandler} type="submit"  className="button-circle button-extra">+</Button>
+            <Button onClick={onNewExtraHandler} type="submit" className="btn btn-primary">Add</Button>
           </div>
 
           <InitialExtras initialExtras={props.initialExtras} onExtra={props.onExtra}/>
-        </div>
+        
 
-        {/* { props.extras.length > 0 && extrasContent}     */}
-        </div> 
+        { props.extras.length > 0 && extrasContent}    
        
     </Card>
   )
