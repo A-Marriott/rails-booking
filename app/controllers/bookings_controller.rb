@@ -1,14 +1,17 @@
 class BookingsController < ApplicationController
   def index
-    @bookings = Booking.all
+    @bookings = policy_scope(Booking)
   end
 
   def new
     @booking = Booking.new
+    authorize @booking
   end
 
   def create
     @booking = Booking.new(booking_params)
+    # Needs logic implemented in booking_policy to only allow entering of one's own company's rooms when making a booking
+    authorize @booking
     if @booking.save
       redirect_to bookings_path
     else
@@ -18,14 +21,17 @@ class BookingsController < ApplicationController
 
   def show
     @booking = Booking.find(params[:id])
+    authorize @booking
   end
 
   def edit
     @booking = Booking.find(params[:id])
+    authorize @booking
   end
 
   def update
     @booking = Booking.find(params[:id])
+    authorize @booking
     @booking.update(booking_params)
     if @booking.save
       redirect_to booking_path
@@ -36,6 +42,7 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking = Booking.find(params[:id])
+    authorize @booking
     @booking.destroy
     redirect_to bookings_path
   end
