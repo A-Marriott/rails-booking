@@ -3,11 +3,6 @@ import './RoomForm.css';
 import Modal from "../UI/Modal";
 import Button from "../UI/Button";
 import Card from '../UI/Card';
-import ExtrasForm from './ExtrasForm';
-import PriceForm from './PriceForm';
-
-
-
 
 
 const RoomForm = (props) => {
@@ -58,10 +53,10 @@ const RoomForm = (props) => {
       return;
     }
     props.onUserData(inputName, inputPrice, inputDescription, inputCapacity);
-    setInputName("");
-    setInputAge("");
-    setInputDescription("");
-    setInputCapacity("");
+    // setInputName("");
+    // setInputAge("");
+    // setInputDescription("");
+    // setInputCapacity("");
   }
 
 
@@ -72,10 +67,11 @@ const RoomForm = (props) => {
 
 
   return (
-    <div className="mb-3">
+    <div>
       <form onSubmit={formSubmitHandler}>
-        <h2 className="text-center">Create a new room</h2>
-        <Card>
+        <div>
+          <h6 className="text-blue-grey">STEP ONE</h6>
+          <h3 className="mb-4">Basic details</h3>
             <div className="form-group">
               <label htmlFor="name">Room name</label>
               <input type="text" id="name" className="form-control" onChange={nameChangedHandler} value={inputName} />
@@ -91,15 +87,13 @@ const RoomForm = (props) => {
               </div>
             </div>
             <div className="form-group">
-              <label htmlFor="description">Description</label>
+              <label htmlFor="description">Room description</label>
               <textarea id="description" className="form-control" onChange={descriptionChangedHandler} value={inputDescription} />
             </div>
-        </Card>
-        {/* <PriceForm onBasePrices={props.onBasePrices}/> */}
-        <ExtrasForm  onExtra={props.onExtra} extras={props.extras} initialExtras={props.initialExtras}/>      
           
-        <div className="center-button">
-          <Button type="submit">Create Room</Button>
+          <div className="d-flex justify-content-end modal-footer">
+            <Button type="submit" className="btn btn-primary">Save and continue</Button>
+          </div>
         </div>
       </form>
            

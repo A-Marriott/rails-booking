@@ -3,7 +3,7 @@ import "./Card.css";
 
 const Card = (props) => {
 
-  const classes = props.className + " card";
+  const classes = props.className + " react-card";
 
   return (
     <div className={classes}>

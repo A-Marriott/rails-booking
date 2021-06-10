@@ -1,0 +1,41 @@
+.room-menu {
+  background-color: #f6f6f6;
+  /* border-top: 1px solid rgba(192, 192, 192, 0.8); */
+  border-bottom: 1px solid #dee2e6;
+}
+
+.room-menu-tab {
+  background-color: white;
+  border-left: 1px solid #dee2e6;
+  
+  font-size: 14px;
+  padding: 8px 20px;
+}
+
+.room-menu .room-menu-tab:last-child {
+  border-right: 1px solid #dee2e6;
+}
+
+
+.room-menu-tab p {
+  margin: 0;
+  font-weight: 600;
+}
+
+.tab-bg {
+  background: #698eb8;
+  color: white;
+}
+
+.form-content {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.modal-footer {
+  padding: 15px 0 20px 0;
+}
+
+.text-blue-grey {
+  color: #698eb8;
+}

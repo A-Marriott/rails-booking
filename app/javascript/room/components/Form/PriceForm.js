@@ -29,9 +29,10 @@ const PriceForm = (props) => {
   const generatePriceInputs = () => {
 
     const createDayInput = (day) => {
+      let dayCapitalized =  day[0].toUpperCase() + day.slice(1).toLowerCase();
       return (
       <div className="form-group row" key={day} >
-        <label htmlFor={day} className="col-sm-2 col-form-label price-label">{day}</label>
+        <label htmlFor={day} className="col-sm-2 col-form-label price-label">{dayCapitalized}</label>
         <div className="col-sm-2">
           <input type="number" id={day} onChange={priceUpdateHandler} className="form-control price-input" min="0" disabled={!buttonShow}/>
         </div>
@@ -52,9 +53,10 @@ const PriceForm = (props) => {
   const generateSeasonalPriceInputs = () => {
 
     const createDayInput = (day) => {
+      let dayCapitalized =  day[0].toUpperCase() + day.slice(1).toLowerCase();
       return (
       <div className="form-group row" key={day} >
-        <label htmlFor={day} className="col-sm-2 col-form-label price-label">{day}</label>
+        <label htmlFor={day} className="col-sm-2 col-form-label price-label">{dayCapitalized}</label>
         <div className="col-sm-2">
           <input type="number" id={day} onChange={priceUpdateHandler} className="form-control price-input" min="0"/>
         </div>
@@ -73,15 +75,15 @@ const PriceForm = (props) => {
   }
 
   return (
-    <Card>
-      <h3 className="text-center mb-4">Room prices</h3>
+    <div>
       <div className="d-flex">
         <div className="base-prices">
-          <h5>Base prices</h5>
+          <h6 className="text-blue-grey">STEP TWO</h6>
+          <h3 className="mb-4">Prices</h3>
           {generatePriceInputs()}
         </div>
 
-        <div>
+        {/* <div>
           <h5>Seasonal prices</h5>
           {generateSeasonalPriceInputs()}
           <div className="form-group">
@@ -92,13 +94,16 @@ const PriceForm = (props) => {
             <label htmlFor="date-to">To</label>
             <input id="date-to" type="date" className="form-control" />
           </div>
-        </div>
+        </div> */}
+
       </div>
 
-      {buttonShow && <Button onClick={pricesAddHandler}>Set seasonal prices</Button>}
-  
-    </Card>
-
+      {/* {buttonShow && <Button onClick={pricesAddHandler}>Set seasonal prices</Button>} */}
+      <div className="d-flex justify-content-between modal-footer">
+        <Button className="btn btn-dark" onClick={props.onBackToBasic}>Back</Button>
+        <Button className="btn btn-primary" onClick={pricesAddHandler}>Save and continue</Button>
+      </div>
+    </div>
   )
 }
 

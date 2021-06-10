@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-// import './App.css';
 import RoomForm from "./components/Form/RoomForm";
 import RoomShow from "./components/RoomShow/RoomShow";
-
+import ExtrasForm from './components/Form/ExtrasForm';
+import PriceForm from './components/Form/PriceForm';
 import Button from "./components/UI/Button";
+
+import "./App.css";
 
 
 const App = () => {
@@ -11,6 +13,10 @@ const App = () => {
   const [room, setRoom] = useState();
   const [extras, setExtras] = useState([]);
   const [basePrices, setBasePrices] = useState({});
+
+  const [editRoomInfo, setEditRoomInfo] = useState(true);
+  const [editPriceInfo, setEditPriceInfo] = useState(false);
+  const [editExtrasInfo, setEditExtrasInfo] = useState(false);
 
   const INITIAL_EXTRAS = [
     {name: "Extra towels", type: "quantity", quantity: "10", price: "5", id: Math.random().toString()},
@@ -26,6 +32,8 @@ const App = () => {
     // POST request with new room from the form
     const roomPost = { name: inputName, base_price: inputPrice, description: inputDescription, capacity: inputCapacity};
     postRoom(roomPost);
+    setEditPriceInfo(true);
+    setEditRoomInfo(false);
   };
 
   const updateExtras = (inputExtraName, inputExtraType, inputMaxQuantity, inputExtraPrice) => {
@@ -36,6 +44,8 @@ const App = () => {
 
   const updateBasePrices = (inputPrices) => {
     setBasePrices({monday: inputPrices.monday, tuesday: inputPrices.tuesday, wednesday: inputPrices.wednesday, thursday: inputPrices.thursday, friday: inputPrices.friday, saturday: inputPrices.saturday, sunday: inputPrices.sunday});
+    setEditExtrasInfo(true);
+    setEditPriceInfo(false);
   }
 
   const getRooms = () => {
@@ -45,6 +55,7 @@ const App = () => {
       console.log(data);
     });
   }
+
 
   const postRoom = (room) => {
     fetch("http://localhost:3000/api/v1/rooms", {
@@ -60,12 +71,58 @@ const App = () => {
     });
   }
 
+  const editRoomHandler = () => {
+    setEditRoomInfo(true)
+    setEditExtrasInfo(false)
+    setEditPriceInfo(false)
+  }
+  
+  const editPriceHandler = () => {
+    setEditRoomInfo(false)
+    setEditExtrasInfo(false)
+    setEditPriceInfo(true)
+  }
+
+  const editExtrasHandler = () => {
+    setEditRoomInfo(false)
+    setEditExtrasInfo(true)
+    setEditPriceInfo(false)
+  }
+
+
+  const backToBasicHandler = () => {
+    setEditRoomInfo(true);
+    setEditPriceInfo(false);
+  }
+
+  const backToPricesHandler = () => {
+    setEditPriceInfo(true);
+    setEditExtrasInfo(false);
+  }
+
 
   return (
-    <div className="app mt-2">
-      <RoomForm onUserData={updateUserData} onExtra={updateExtras} extras={extras} initialExtras={INITIAL_EXTRAS} onBasePrices={updateBasePrices} />
-      {room && <RoomShow room={room} extras={extras} basePrices={basePrices} />}
-      <Button onClick={getRooms}>GET ROOMS</Button>
+    <div className="app">
+      <div className="room-menu d-flex justify-content-center mb-4">
+        <div className={`room-menu-tab ${editRoomInfo ? "tab-bg": ""}`}>
+          <p>Basic information</p>
+        </div>
+        <div className={`room-menu-tab ${editPriceInfo ? "tab-bg": ""}`}>
+          <p>Prices</p>
+        </div>
+        <div className={`room-menu-tab ${editExtrasInfo ? "tab-bg": ""}`}>
+          <p>Extras</p>
+        </div>
+      </div>
+      <div className="form-content">
+        {editRoomInfo && <RoomForm onUserData={updateUserData}  onBasePrices={updateBasePrices} />}
+        {editPriceInfo && <PriceForm onBasePrices={updateBasePrices} onBackToBasic={backToBasicHandler}/>}
+        {editExtrasInfo && <ExtrasForm onExtra={updateExtras} extras={extras} initialExtras={INITIAL_EXTRAS} onBackToPrices={backToPricesHandler}/>}
+      </div>
+
+      {/* <RoomShow room={room} extras={extras} basePrices={basePrices} /> */}
+
+      {/* <Button onClick={getRooms}>GET ROOMS</Button> */}
     </div>
   );
 }

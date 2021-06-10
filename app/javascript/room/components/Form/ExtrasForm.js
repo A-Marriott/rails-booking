@@ -63,54 +63,55 @@ const Extras = (props) => {
 
   const extrasContent = (
     <div className="w-25">
-      <h3>Extras for this room</h3>
+      <h5>Extras that will be available for this room</h5>
       <ExtrasList extras={props.extras} />
     </div>
   ) 
 
   return (
-    <Card>
-      <h3 className="text-center">Add optional extras</h3>
+    <>
+    <div>
+      <h6 className="text-blue-grey">STEP THREE</h6>
+      <h3 className="mb-4">Extras</h3>
 
-      <div className="extras-all">
-
-        <div className="left-extras-all">
-          
-          <div className="extras-form">
-            <div className="extras-controls">
-              <div className="form-group">
-                <label htmlFor="extra-name">Name</label>
-                <input type="text" id="extra-name" className="form-control" onChange={inputExtraNameChangedHandler}  value={inputExtraName} onKeyPress={handleKeyPress} />
-              </div>
-              <div className="form-group">
-                <label htmlFor="extra-price">Price (£)</label>
-                <input type="number" min="0" id="extra-price" className="form-control" onChange={inputExtraPriceChangedHandler}  value={inputExtraPrice} onKeyPress={handleKeyPress} />
-              </div>
-              <div className="form-group">
-                <label htmlFor="quantity-type">Quantity type</label>
-                <select onChange={inputExtraTypeChangedHandler} id="quantity-type" className="form-control" value={inputExtraType}>
-                  <option value="default"> -- select an option -- </option>
-                  <option value="checkbox">Check-box</option>
-                  <option value="quantity">Quantity</option>
-                </select>
-              </div>
-              {showInputQuantity && (
-              <div className="form-group">
-                <label htmlFor="max-quantity">Max quantity</label>
-                <input type="number" id="max-quantity" min="1" className="form-control" onChange={inputMaxQuantityChangedHandler} />
-              </div>)}            
-            </div>
-
-          <Button onClick={onNewExtraHandler} type="submit"  className="button-circle button-extra">+</Button>
+      <div className="extras-form d-flex mb-3">
+        <div className="extras-controls">
+          <div className="form-group">
+            <label htmlFor="extra-name">Name</label>
+            <input type="text" id="extra-name" className="form-control" placeholder="Breakfast" onChange={inputExtraNameChangedHandler}  value={inputExtraName} onKeyPress={handleKeyPress} />
           </div>
-
-          <InitialExtras initialExtras={props.initialExtras} onExtra={props.onExtra}/>
+          <div className="form-group">
+            <label htmlFor="extra-price">Price (£)</label>
+            <input type="number" min="0" id="extra-price" className="form-control" onChange={inputExtraPriceChangedHandler}  value={inputExtraPrice} onKeyPress={handleKeyPress} />
+          </div>
+          <div className="form-group">
+            <label htmlFor="quantity-type">Quantity type</label>
+            <select onChange={inputExtraTypeChangedHandler} id="quantity-type" className="form-control" value={inputExtraType}>
+              <option value="default"> -- select an option -- </option>
+              <option value="checkbox">Check-box</option>
+              <option value="quantity">Quantity</option>
+            </select>
+          </div>
+          {showInputQuantity && (
+          <div className="form-group">
+            <label htmlFor="max-quantity">Max quantity</label>
+            <input type="number" id="max-quantity" min="1" className="form-control" onChange={inputMaxQuantityChangedHandler} />
+          </div>)}            
         </div>
+        <Button onClick={onNewExtraHandler} type="submit" className="btn btn-primary ml-2">Add</Button>
+      </div>
 
-        { props.extras.length > 0 && extrasContent}    
-        </div> 
-       
-    </Card>
+      <InitialExtras initialExtras={props.initialExtras} onExtra={props.onExtra}/>
+    
+
+      { props.extras.length > 0 && extrasContent}
+    </div>
+      <div className="d-flex justify-content-between modal-footer">
+        <Button className="btn btn-dark" onClick={props.onBackToPrices}>Back</Button>
+        <Button className="btn btn-primary">Save Room</Button>
+      </div>    
+
+    </>
   )
 }
 
