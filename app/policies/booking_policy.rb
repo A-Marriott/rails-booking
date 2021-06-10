@@ -1,7 +1,18 @@
 class BookingPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
+      if user.admin?
+        scope.all
+      else
+        @bookings = []
+        user.company.rooms.each do |room|
+          room.bookings.each do |booking|
+            @bookings << booking
+          end
+        end
+        @bookings.uniq!
+        @bookings
+      end
     end
   end
 

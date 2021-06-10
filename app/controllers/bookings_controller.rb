@@ -1,18 +1,6 @@
 class BookingsController < ApplicationController
   def index
-    # THIS NEEDS UPDATING! Currently we are not using Pundit for authorization, we're doing it manually here and I'm not sure of the repercussions.
-    policy_scope(Booking)
-    if current_user.admin == true
-      @bookings = Booking.all
-    else
-      @bookings = []
-      Company.find(current_user.company_id).rooms.each do |room|
-        room.bookings.each do |booking|
-          @bookings << booking
-        end
-      end
-      @bookings.uniq!
-    end
+    @bookings = policy_scope(Booking)
   end
 
   def new
